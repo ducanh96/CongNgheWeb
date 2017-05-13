@@ -1,0 +1,10 @@
+﻿@model List<ShoppingMobile.Models.ModelDB.HangSanXuat>
+<ul class="nav nav-pills nav-stacked">
+    @foreach (var item in Model)
+    {
+        <li class="#"><a href="@Url.Action("DSDT_Category","Shopping",new {id=item.MaHSX })">@item.TenHSX</a></li>     
+    }
+   
+
+
+</ul>

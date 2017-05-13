@@ -1,0 +1,60 @@
+﻿@model ShoppingMobile.Models.ModelDB.UserProfile
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Index</h2>
+<div class="outter-wp">
+    <!--sub-heard-part-->
+    <div class="sub-heard-part">
+        <ol class="breadcrumb m-b-0">
+            <li><a href="index.html">Home</a></li>
+            <li class="active">Profile</li>
+        </ol>
+    </div>
+    <!--//sub-heard-part-->
+    <!--/profile-->
+    <h3 class="sub-tittle pro">Profile</h3>
+    <div class="profile-widget">
+        <img src="images/admin1.jpg" alt=" ">
+        <h2>@Model.Name</h2>
+        <p>@User.Identity.Name</p>
+    </div>
+    <!--/profile-inner-->
+    <div class="profile-section-inner text-center">
+        
+        <div class="col-md-offset-3 col-md-6 profile-info">
+            <h3 class="inner-tittle col-md-offset-3">Thông tin cá nhân</h3>
+            <div class="main-grid3">
+                <div class="p-20">
+                    <div class="about-info-p">
+                        <strong>Tên:</strong>
+                        <br>
+                        <p class="text-muted">@Model.Name</p>
+                    </div>
+                    <div class="about-info-p">
+                        <strong>Gioi tính</strong>
+                        <br>
+                        <p class="text-muted">@Model.Sex</p>
+                    </div>
+                    
+                    <div class="about-info-p m-b-0">
+                        <strong>Địa chỉ</strong>
+                        <br>
+                        <p class="text-muted">@Model.Address</p>
+                    </div>
+                </div>
+            </div>
+         
+        </div>
+       
+        <!--/map-->
+      
+        <div class="clearfix"></div>
+    </div>
+
+    <!--//profile-inner-->
+    <!--//profile-->
+</div>
+@Html.ActionLink("Edit", "Edit", new {id = Model.UserId})

@@ -1,0 +1,9 @@
+﻿@model List<ShoppingMobile.Models.Entities.Person>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.FirstName</td>
+            <td>@item.LastName</td>
+            <td>@item.Roles</td>
+        </tr>
+    }

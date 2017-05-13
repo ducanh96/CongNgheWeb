@@ -1,0 +1,56 @@
+﻿@model List<ShoppingMobile.Models.ModelDB.DienThoai>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<!-- Bootstrap Core JavaScript -->
+
+
+<link href="~/Content/dataTables.bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/jquery.dataTables.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Content/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#table_id").DataTable();
+    })
+</script>
+
+
+
+
+<table class="table table-bordered table-striped table-responsive" id="table_id">
+    <thead>
+        <tr>
+            <th>Tên điện thoại</th>
+            <th>Hình ảnh</th>
+            <th>Giá</th>
+            <th>Số lượng</th>
+            <th>Tên hãng sản xuất</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.TenDienThoai</td>
+                <td><img src="@item.AnhDT" width="195" height="243"></td>
+                <td>@string.Format("{0:0,0} VND", @item.Gia)</td>
+                <td>@item.SoLuong</td>
+                <td>@item.HangSanXuat.TenHSX</td>
+                <td><a href="@Url.Action("Edit",new {id = item.MaDT })">Edit</a>
+                <br />
+                <a href="@Url.Action("Details",new {id = item.MaDT })">Details</a>
+                <br />
+                    <a href="@Url.Action("Delete",new {id = item.MaDT })">Delete</a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+
