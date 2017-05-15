@@ -8,110 +8,116 @@ using System.Web;
 using System.Web.Mvc;
 using ShoppingMobile.Models.ModelDB;
 
-namespace ShoppingMobile.Controllers
+namespace ShoppingMobile.Areas.Admin.Controllers
 {
     [Authorize]
-    public class KhachHangsController : Controller
+    public class UserProfilesController : Controller
     {
         private DienThoaiDBEntities db = new DienThoaiDBEntities();
 
-        // GET: KhachHangs
+        // GET: UserProfiles
         public ActionResult Index()
         {
-            return View(db.KhachHangs.ToList());
+            var user = db.Table_User.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
+            var userProfiles = db.UserProfiles.Find(user.UserId);
+            return View(userProfiles);
         }
 
-        // GET: KhachHangs/Details/5
+        // GET: UserProfiles/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            KhachHang khachHang = db.KhachHangs.Find(id);
-            if (khachHang == null)
+            UserProfile userProfile = db.UserProfiles.Find(id);
+            if (userProfile == null)
             {
                 return HttpNotFound();
             }
-            return View(khachHang);
+            return View(userProfile);
         }
 
-        // GET: KhachHangs/Create
+        // GET: UserProfiles/Create
         public ActionResult Create()
         {
+            ViewBag.UserId = new SelectList(db.Table_User, "UserId", "UserName");
             return View();
         }
 
-        // POST: KhachHangs/Create
+        // POST: UserProfiles/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MaKH,TenKH,SDT,DiaChi,Email,GioiTinh")] KhachHang khachHang)
+        public ActionResult Create([Bind(Include = "UserId,Name,Sex,Address,UserImage")] UserProfile userProfile)
         {
             if (ModelState.IsValid)
             {
-                db.KhachHangs.Add(khachHang);
+                db.UserProfiles.Add(userProfile);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(khachHang);
+            ViewBag.UserId = new SelectList(db.Table_User, "UserId", "UserName", userProfile.UserId);
+            return View(userProfile);
         }
 
-        // GET: KhachHangs/Edit/5
+        // GET: UserProfiles/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            KhachHang khachHang = db.KhachHangs.Find(id);
-            if (khachHang == null)
+            UserProfile userProfile = db.UserProfiles.Find(id);
+            if (userProfile == null)
             {
                 return HttpNotFound();
             }
-            return View(khachHang);
+            ViewBag.UserId = new SelectList(db.Table_User, "UserId", "UserName", userProfile.UserId);
+            return View(userProfile);
         }
 
-        // POST: KhachHangs/Edit/5
+        // POST: UserProfiles/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MaKH,TenKH,SDT,DiaChi,Email,GioiTinh")] KhachHang khachHang)
+        public ActionResult Edit([Bind(Include = "UserId,Name,Sex,Address,IsActive,UserImage")] UserProfile userProfile)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(khachHang).State = EntityState.Modified;
+                db.Entry(userProfile).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(khachHang);
+            ViewBag.UserId = new SelectList(db.Table_User, "UserId", "UserName", userProfile.UserId);
+            return View(userProfile);
         }
 
-        // GET: KhachHangs/Delete/5
+        // GET: UserProfiles/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            KhachHang khachHang = db.KhachHangs.Find(id);
-            if (khachHang == null)
+            UserProfile userProfile = db.UserProfiles.Find(id);
+            if (userProfile == null)
             {
                 return HttpNotFound();
             }
-            return View(khachHang);
+            return View(userProfile);
         }
 
-        // POST: KhachHangs/Delete/5
+        // POST: UserProfiles/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            KhachHang khachHang = db.KhachHangs.Find(id);
-            db.KhachHangs.Remove(khachHang);
+            UserProfile userProfile = db.UserProfiles.Find(id);
+            db.UserProfiles.Remove(userProfile);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -1,0 +1,76 @@
+﻿@model IEnumerable<ShoppingMobile.Models.ModelDB.DDH>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TenNguoiNhan)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiaChiNhan)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NgayDH)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TrangThai)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SDT)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KhachHang.TenKH)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenNguoiNhan)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiaChiNhan)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgayDH)
+                </td>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.TrangThai)*@
+                    @switch (item.TrangThai)
+                    {
+                        case 0:
+                            <span>Chưa thanh toán</span>
+                            break;
+                        case 1:
+                            <span>Đã thanh toán</span>
+                            break;
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SDT)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KhachHang.TenKH)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.MaDDH }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.MaDDH }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.MaDDH })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

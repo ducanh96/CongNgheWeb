@@ -11,8 +11,7 @@ namespace ShoppingMobile.Models.ModelDB
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class HangSanXuat
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,7 +21,6 @@ namespace ShoppingMobile.Models.ModelDB
         }
     
         public int MaHSX { get; set; }
-        [Display(Name ="Tên hãng")]
         public string TenHSX { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

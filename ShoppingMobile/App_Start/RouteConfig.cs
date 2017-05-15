@@ -12,12 +12,20 @@ namespace ShoppingMobile
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
+                
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Shopping", action = "Home", id = UrlParameter.Optional }
+                defaults: new { controller = "Shopping", action = "Home", id = UrlParameter.Optional },
+                namespaces:new string[] {"ShoppingMobile.Areas.Admin.Controllers" }
+                
+
+
             );
+
+            
+           
+        
         }
     }
 }

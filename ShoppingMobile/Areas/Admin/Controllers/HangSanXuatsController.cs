@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using ShoppingMobile.Models.ModelDB;
 
-namespace ShoppingMobile.Controllers
+namespace ShoppingMobile.Areas.Admin.Controllers
 {
     [Authorize]
     public class HangSanXuatsController : Controller

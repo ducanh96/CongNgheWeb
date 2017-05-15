@@ -215,16 +215,17 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\DDHsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\DDHsController.cs" />
-    <Compile Include="Controllers\DienThoaisController.cs" />
-    <Compile Include="Controllers\HangSanXuatsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DienThoaisController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HangSanXuatsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\KhachHangsController.cs" />
-    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Areas\Admin\Controllers\KhachHangsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ShoppingController.cs" />
-    <Compile Include="Controllers\UserProfilesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserProfilesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -795,6 +796,12 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\DDHs\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\DDHs\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\DDHs\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\DDHs\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\DDHs\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -845,21 +852,16 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Shared\_LayoutShop.cshtml" />
-    <Content Include="Views\HangSanXuats\Create.cshtml" />
-    <Content Include="Views\HangSanXuats\Delete.cshtml" />
-    <Content Include="Views\HangSanXuats\Details.cshtml" />
-    <Content Include="Views\HangSanXuats\Edit.cshtml" />
-    <Content Include="Views\HangSanXuats\Index.cshtml" />
-    <Content Include="Views\KhachHangs\Create.cshtml" />
-    <Content Include="Views\KhachHangs\Delete.cshtml" />
-    <Content Include="Views\KhachHangs\Details.cshtml" />
-    <Content Include="Views\KhachHangs\Edit.cshtml" />
-    <Content Include="Views\KhachHangs\Index.cshtml" />
-    <Content Include="Views\DDHs\Create.cshtml" />
-    <Content Include="Views\DDHs\Delete.cshtml" />
-    <Content Include="Views\DDHs\Details.cshtml" />
-    <Content Include="Views\DDHs\Edit.cshtml" />
-    <Content Include="Views\DDHs\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\HangSanXuats\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\HangSanXuats\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\HangSanXuats\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\HangSanXuats\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\HangSanXuats\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\KhachHangs\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\KhachHangs\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\KhachHangs\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\KhachHangs\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\KhachHangs\Index.cshtml" />
     <Content Include="Views\Shopping\Index.cshtml" />
     <Content Include="Views\Shared\_ShopPage.cshtml" />
     <Content Include="Views\Shopping\Details.cshtml" />
@@ -869,24 +871,26 @@
     <Content Include="Views\Shopping\HangSanXuat.cshtml" />
     <Content Include="Views\Shopping\DSDT_Category.cshtml" />
     <Content Include="Views\Shopping\ListDT_Partial.cshtml" />
-    <Content Include="Views\DienThoais\Create.cshtml" />
-    <Content Include="Views\DienThoais\Delete.cshtml" />
-    <Content Include="Views\DienThoais\Details.cshtml" />
-    <Content Include="Views\DienThoais\Edit.cshtml" />
-    <Content Include="Views\DienThoais\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\DienThoais\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\DienThoais\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\DienThoais\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\DienThoais\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\DienThoais\Index.cshtml" />
     <Content Include="Views\Demo\Index.cshtml" />
     <Content Include="Views\Demo\GetDataUser.cshtml" />
     <Content Include="Views\Demo\GetPeople.cshtml" />
-    <Content Include="Views\Login\Index.cshtml" />
-    <Content Include="Views\Login\Register.cshtml" />
-    <Content Include="Views\UserProfiles\Create.cshtml" />
-    <Content Include="Views\UserProfiles\Delete.cshtml" />
-    <Content Include="Views\UserProfiles\Details.cshtml" />
-    <Content Include="Views\UserProfiles\Edit.cshtml" />
-    <Content Include="Views\UserProfiles\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Login\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Login\Register.cshtml" />
+    <Content Include="Areas\Admin\Views\UserProfiles\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\UserProfiles\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\UserProfiles\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\UserProfiles\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\UserProfiles\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Models\Entities\" />
   </ItemGroup>
   <ItemGroup>

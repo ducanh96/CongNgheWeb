@@ -9,7 +9,7 @@ using System.Web.Mvc;
 using ShoppingMobile.Models.ModelDB;
 using System.IO;
 
-namespace ShoppingMobile.Controllers
+namespace ShoppingMobile.Areas.Admin.Controllers
 {
     [Authorize]
     public class DienThoaisController : Controller

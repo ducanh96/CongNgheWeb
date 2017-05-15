@@ -8,114 +8,110 @@ using System.Web;
 using System.Web.Mvc;
 using ShoppingMobile.Models.ModelDB;
 
-namespace ShoppingMobile.Controllers
+namespace ShoppingMobile.Areas.Admin.Controllers
 {
-    public class DDHsController : Controller
+    [Authorize]
+    public class KhachHangsController : Controller
     {
         private DienThoaiDBEntities db = new DienThoaiDBEntities();
 
-        // GET: DDHs
+        // GET: KhachHangs
         public ActionResult Index()
         {
-            var dDHs = db.DDHs.Include(d => d.KhachHang);
-            return View(dDHs.ToList());
+            return View(db.KhachHangs.ToList());
         }
 
-        // GET: DDHs/Details/5
+        // GET: KhachHangs/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DDH dDH = db.DDHs.Find(id);
-            if (dDH == null)
+            KhachHang khachHang = db.KhachHangs.Find(id);
+            if (khachHang == null)
             {
                 return HttpNotFound();
             }
-            return View(dDH);
+            return View(khachHang);
         }
 
-        // GET: DDHs/Create
+        // GET: KhachHangs/Create
         public ActionResult Create()
         {
-            ViewBag.MaKH = new SelectList(db.KhachHangs, "MaKH", "TenKH");
             return View();
         }
 
-        // POST: DDHs/Create
+        // POST: KhachHangs/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MaDDH,MaKH,TongTien,GhiChu,DiaChiNhan,NgayDH")] DDH dDH)
+        public ActionResult Create([Bind(Include = "MaKH,TenKH,SDT,DiaChi,Email,GioiTinh")] KhachHang khachHang)
         {
             if (ModelState.IsValid)
             {
-                db.DDHs.Add(dDH);
+                db.KhachHangs.Add(khachHang);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.MaKH = new SelectList(db.KhachHangs, "MaKH", "TenKH", dDH.MaKH);
-            return View(dDH);
+            return View(khachHang);
         }
 
-        // GET: DDHs/Edit/5
+        // GET: KhachHangs/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DDH dDH = db.DDHs.Find(id);
-            if (dDH == null)
+            KhachHang khachHang = db.KhachHangs.Find(id);
+            if (khachHang == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.MaKH = new SelectList(db.KhachHangs, "MaKH", "TenKH", dDH.MaKH);
-            return View(dDH);
+            return View(khachHang);
         }
 
-        // POST: DDHs/Edit/5
+        // POST: KhachHangs/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MaDDH,MaKH,TongTien,GhiChu,DiaChiNhan,NgayDH")] DDH dDH)
+        public ActionResult Edit([Bind(Include = "MaKH,TenKH,SDT,DiaChi,Email,GioiTinh")] KhachHang khachHang)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(dDH).State = EntityState.Modified;
+                db.Entry(khachHang).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.MaKH = new SelectList(db.KhachHangs, "MaKH", "TenKH", dDH.MaKH);
-            return View(dDH);
+            return View(khachHang);
         }
 
-        // GET: DDHs/Delete/5
+        // GET: KhachHangs/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DDH dDH = db.DDHs.Find(id);
-            if (dDH == null)
+            KhachHang khachHang = db.KhachHangs.Find(id);
+            if (khachHang == null)
             {
                 return HttpNotFound();
             }
-            return View(dDH);
+            return View(khachHang);
         }
 
-        // POST: DDHs/Delete/5
+        // POST: KhachHangs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            DDH dDH = db.DDHs.Find(id);
-            db.DDHs.Remove(dDH);
+            KhachHang khachHang = db.KhachHangs.Find(id);
+            db.KhachHangs.Remove(khachHang);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

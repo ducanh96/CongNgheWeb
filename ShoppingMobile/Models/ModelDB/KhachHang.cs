@@ -26,6 +26,7 @@ namespace ShoppingMobile.Models.ModelDB
         public string DiaChi { get; set; }
         public string Email { get; set; }
         public string GioiTinh { get; set; }
+        public string Password { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DDH> DDHs { get; set; }

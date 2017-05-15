@@ -22,10 +22,11 @@ namespace ShoppingMobile.Models.ModelDB
     
         public int MaDDH { get; set; }
         public Nullable<int> MaKH { get; set; }
-        public Nullable<decimal> TongTien { get; set; }
-        public string GhiChu { get; set; }
+        public string TenNguoiNhan { get; set; }
         public string DiaChiNhan { get; set; }
         public Nullable<System.DateTime> NgayDH { get; set; }
+        public Nullable<int> TrangThai { get; set; }
+        public string SDT { get; set; }
     
         public virtual KhachHang KhachHang { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
