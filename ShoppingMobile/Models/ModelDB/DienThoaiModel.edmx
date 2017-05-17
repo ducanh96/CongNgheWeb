@@ -88,18 +88,7 @@
           <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="50" />
           <Property Name="UserPassword" Type="nvarchar" MaxLength="50" />
-          <Property Name="UserPasswordConfirm" Type="nvarchar" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="UserProfile">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="UserId" Type="int" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="250" />
-          <Property Name="Sex" Type="nvarchar" MaxLength="10" />
-          <Property Name="Address" Type="nvarchar" MaxLength="250" />
-          <Property Name="IsActive" Type="bit" />
-          <Property Name="UserImage" Type="nvarchar" MaxLength="1" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="UserRole">
           <Key>
@@ -170,18 +159,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__UserProfi__UserI__0A9D95DB">
-          <End Role="Table_User" Type="Self.Table_User" Multiplicity="1" />
-          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Table_User">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="UserProfile">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__UserRole__RoleId__06CD04F7">
           <End Role="Table_Role" Type="Self.Table_Role" Multiplicity="1" />
           <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
@@ -215,7 +192,6 @@
           <EntitySet Name="KhachHang" EntityType="Self.KhachHang" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Table_Role" EntityType="Self.Table_Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Table_User" EntityType="Self.Table_User" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="UserProfile" EntityType="Self.UserProfile" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__DDH__MaKH__3D2915A8" Association="Self.FK__DDH__MaKH__3D2915A8">
             <End Role="KhachHang" EntitySet="KhachHang" />
@@ -237,10 +213,6 @@
             <End Role="DienThoai" EntitySet="DienThoai" />
             <End Role="Images" EntitySet="Images" />
           </AssociationSet>
-          <AssociationSet Name="FK__UserProfi__UserI__0A9D95DB" Association="Self.FK__UserProfi__UserI__0A9D95DB">
-            <End Role="Table_User" EntitySet="Table_User" />
-            <End Role="UserProfile" EntitySet="UserProfile" />
-          </AssociationSet>
           <AssociationSet Name="FK__UserRole__RoleId__06CD04F7" Association="Self.FK__UserRole__RoleId__06CD04F7">
             <End Role="Table_Role" EntitySet="Table_Role" />
             <End Role="UserRole" EntitySet="UserRole" />
@@ -255,6 +227,7 @@
     <edmx:ConceptualModels>
       <Schema Namespace="DienThoaiDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="DienThoaiDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DDHs" EntityType="DienThoaiDBModel.DDH" />
           <EntitySet Name="DDHCTs" EntityType="DienThoaiDBModel.DDHCT" />
           <EntitySet Name="DienThoais" EntityType="DienThoaiDBModel.DienThoai" />
           <EntitySet Name="HangSanXuats" EntityType="DienThoaiDBModel.HangSanXuat" />
@@ -262,8 +235,15 @@
           <EntitySet Name="KhachHangs" EntityType="DienThoaiDBModel.KhachHang" />
           <EntitySet Name="Table_Role" EntityType="DienThoaiDBModel.Table_Role" />
           <EntitySet Name="Table_User" EntityType="DienThoaiDBModel.Table_User" />
-          <EntitySet Name="UserProfiles" EntityType="DienThoaiDBModel.UserProfile" />
           <EntitySet Name="UserRoles" EntityType="DienThoaiDBModel.UserRole" />
+          <AssociationSet Name="FK__DDH__MaKH__3D2915A8" Association="DienThoaiDBModel.FK__DDH__MaKH__3D2915A8">
+            <End Role="KhachHang" EntitySet="KhachHangs" />
+            <End Role="DDH" EntitySet="DDHs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DDHCT__MaDDH__3E1D39E1" Association="DienThoaiDBModel.FK__DDHCT__MaDDH__3E1D39E1">
+            <End Role="DDH" EntitySet="DDHs" />
+            <End Role="DDHCT" EntitySet="DDHCTs" />
+          </AssociationSet>
           <AssociationSet Name="FK__DDHCT__MaDT__5AEE82B9" Association="DienThoaiDBModel.FK__DDHCT__MaDT__5AEE82B9">
             <End Role="DienThoai" EntitySet="DienThoais" />
             <End Role="DDHCT" EntitySet="DDHCTs" />
@@ -280,24 +260,25 @@
             <End Role="Table_Role" EntitySet="Table_Role" />
             <End Role="UserRole" EntitySet="UserRoles" />
           </AssociationSet>
-          <AssociationSet Name="FK__UserProfi__UserI__0A9D95DB" Association="DienThoaiDBModel.FK__UserProfi__UserI__0A9D95DB">
-            <End Role="Table_User" EntitySet="Table_User" />
-            <End Role="UserProfile" EntitySet="UserProfiles" />
-          </AssociationSet>
           <AssociationSet Name="FK__UserRole__UserId__05D8E0BE" Association="DienThoaiDBModel.FK__UserRole__UserId__05D8E0BE">
             <End Role="Table_User" EntitySet="Table_User" />
             <End Role="UserRole" EntitySet="UserRoles" />
           </AssociationSet>
-          <EntitySet Name="DDHs" EntityType="DienThoaiDBModel.DDH" />
-          <AssociationSet Name="FK__DDH__MaKH__3D2915A8" Association="DienThoaiDBModel.FK__DDH__MaKH__3D2915A8">
-            <End Role="KhachHang" EntitySet="KhachHangs" />
-            <End Role="DDH" EntitySet="DDHs" />
-          </AssociationSet>
-          <AssociationSet Name="FK__DDHCT__MaDDH__3E1D39E1" Association="DienThoaiDBModel.FK__DDHCT__MaDDH__3E1D39E1">
-            <End Role="DDH" EntitySet="DDHs" />
-            <End Role="DDHCT" EntitySet="DDHCTs" />
-          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="DDH">
+          <Key>
+            <PropertyRef Name="MaDDH" />
+          </Key>
+          <Property Name="MaDDH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaKH" Type="Int32" />
+          <Property Name="TenNguoiNhan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DiaChiNhan" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="NgayDH" Type="DateTime" Precision="3" />
+          <Property Name="TrangThai" Type="Int32" />
+          <Property Name="SDT" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="KhachHang" Relationship="DienThoaiDBModel.FK__DDH__MaKH__3D2915A8" FromRole="DDH" ToRole="KhachHang" />
+          <NavigationProperty Name="DDHCTs" Relationship="DienThoaiDBModel.FK__DDHCT__MaDDH__3E1D39E1" FromRole="DDH" ToRole="DDHCT" />
+        </EntityType>
         <EntityType Name="DDHCT">
           <Key>
             <PropertyRef Name="MaDDH" />
@@ -307,8 +288,8 @@
           <Property Name="MaDT" Type="Int32" Nullable="false" />
           <Property Name="SoLuong" Type="Int32" />
           <Property Name="DonGia" Type="Decimal" Precision="18" Scale="0" />
-          <NavigationProperty Name="DienThoai" Relationship="DienThoaiDBModel.FK__DDHCT__MaDT__5AEE82B9" FromRole="DDHCT" ToRole="DienThoai" />
           <NavigationProperty Name="DDH" Relationship="DienThoaiDBModel.FK__DDHCT__MaDDH__3E1D39E1" FromRole="DDHCT" ToRole="DDH" />
+          <NavigationProperty Name="DienThoai" Relationship="DienThoaiDBModel.FK__DDHCT__MaDT__5AEE82B9" FromRole="DDHCT" ToRole="DienThoai" />
         </EntityType>
         <EntityType Name="DienThoai">
           <Key>
@@ -378,21 +359,8 @@
           <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UserPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="UserPasswordConfirm" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="UserProfile" Relationship="DienThoaiDBModel.FK__UserProfi__UserI__0A9D95DB" FromRole="Table_User" ToRole="UserProfile" />
+          <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="UserRoles" Relationship="DienThoaiDBModel.FK__UserRole__UserId__05D8E0BE" FromRole="Table_User" ToRole="UserRole" />
-        </EntityType>
-        <EntityType Name="UserProfile">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="UserId" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="Sex" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="IsActive" Type="Boolean" />
-          <Property Name="UserImage" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Table_User" Relationship="DienThoaiDBModel.FK__UserProfi__UserI__0A9D95DB" FromRole="UserProfile" ToRole="Table_User" />
         </EntityType>
         <EntityType Name="UserRole">
           <Key>
@@ -405,6 +373,30 @@
           <NavigationProperty Name="Table_Role" Relationship="DienThoaiDBModel.FK__UserRole__RoleId__06CD04F7" FromRole="UserRole" ToRole="Table_Role" />
           <NavigationProperty Name="Table_User" Relationship="DienThoaiDBModel.FK__UserRole__UserId__05D8E0BE" FromRole="UserRole" ToRole="Table_User" />
         </EntityType>
+        <Association Name="FK__DDH__MaKH__3D2915A8">
+          <End Type="DienThoaiDBModel.KhachHang" Role="KhachHang" Multiplicity="0..1" />
+          <End Type="DienThoaiDBModel.DDH" Role="DDH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KhachHang">
+              <PropertyRef Name="MaKH" />
+            </Principal>
+            <Dependent Role="DDH">
+              <PropertyRef Name="MaKH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DDHCT__MaDDH__3E1D39E1">
+          <End Type="DienThoaiDBModel.DDH" Role="DDH" Multiplicity="1" />
+          <End Type="DienThoaiDBModel.DDHCT" Role="DDHCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DDH">
+              <PropertyRef Name="MaDDH" />
+            </Principal>
+            <Dependent Role="DDHCT">
+              <PropertyRef Name="MaDDH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__DDHCT__MaDT__5AEE82B9">
           <End Type="DienThoaiDBModel.DienThoai" Role="DienThoai" Multiplicity="1" />
           <End Type="DienThoaiDBModel.DDHCT" Role="DDHCT" Multiplicity="*" />
@@ -453,18 +445,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__UserProfi__UserI__0A9D95DB">
-          <End Type="DienThoaiDBModel.Table_User" Role="Table_User" Multiplicity="1" />
-          <End Type="DienThoaiDBModel.UserProfile" Role="UserProfile" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Table_User">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="UserProfile">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__UserRole__UserId__05D8E0BE">
           <End Type="DienThoaiDBModel.Table_User" Role="Table_User" Multiplicity="1" />
           <End Type="DienThoaiDBModel.UserRole" Role="UserRole" Multiplicity="*" />
@@ -477,50 +457,25 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="DDH">
-          <Key>
-            <PropertyRef Name="MaDDH" />
-          </Key>
-          <Property Name="MaDDH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MaKH" Type="Int32" />
-          <Property Name="TenNguoiNhan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="DiaChiNhan" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="NgayDH" Type="DateTime" Precision="3" />
-          <Property Name="TrangThai" Type="Int32" />
-          <Property Name="SDT" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="KhachHang" Relationship="DienThoaiDBModel.FK__DDH__MaKH__3D2915A8" FromRole="DDH" ToRole="KhachHang" />
-          <NavigationProperty Name="DDHCTs" Relationship="DienThoaiDBModel.FK__DDHCT__MaDDH__3E1D39E1" FromRole="DDH" ToRole="DDHCT" />
-        </EntityType>
-        <Association Name="FK__DDH__MaKH__3D2915A8">
-          <End Type="DienThoaiDBModel.KhachHang" Role="KhachHang" Multiplicity="0..1" />
-          <End Type="DienThoaiDBModel.DDH" Role="DDH" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="KhachHang">
-              <PropertyRef Name="MaKH" />
-            </Principal>
-            <Dependent Role="DDH">
-              <PropertyRef Name="MaKH" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__DDHCT__MaDDH__3E1D39E1">
-          <End Type="DienThoaiDBModel.DDH" Role="DDH" Multiplicity="1" />
-          <End Type="DienThoaiDBModel.DDHCT" Role="DDHCT" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DDH">
-              <PropertyRef Name="MaDDH" />
-            </Principal>
-            <Dependent Role="DDHCT">
-              <PropertyRef Name="MaDDH" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="DienThoaiDBModelStoreContainer" CdmEntityContainer="DienThoaiDBEntities">
+          <EntitySetMapping Name="DDHs">
+            <EntityTypeMapping TypeName="DienThoaiDBModel.DDH">
+              <MappingFragment StoreEntitySet="DDH">
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+                <ScalarProperty Name="NgayDH" ColumnName="NgayDH" />
+                <ScalarProperty Name="DiaChiNhan" ColumnName="DiaChiNhan" />
+                <ScalarProperty Name="TenNguoiNhan" ColumnName="TenNguoiNhan" />
+                <ScalarProperty Name="MaKH" ColumnName="MaKH" />
+                <ScalarProperty Name="MaDDH" ColumnName="MaDDH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="DDHCTs">
             <EntityTypeMapping TypeName="DienThoaiDBModel.DDHCT">
               <MappingFragment StoreEntitySet="DDHCT">
@@ -593,21 +548,9 @@
           <EntitySetMapping Name="Table_User">
             <EntityTypeMapping TypeName="DienThoaiDBModel.Table_User">
               <MappingFragment StoreEntitySet="Table_User">
-                <ScalarProperty Name="UserPasswordConfirm" ColumnName="UserPasswordConfirm" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
                 <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UserProfiles">
-            <EntityTypeMapping TypeName="DienThoaiDBModel.UserProfile">
-              <MappingFragment StoreEntitySet="UserProfile">
-                <ScalarProperty Name="UserImage" ColumnName="UserImage" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Sex" ColumnName="Sex" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -618,19 +561,6 @@
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DDHs">
-            <EntityTypeMapping TypeName="DienThoaiDBModel.DDH">
-              <MappingFragment StoreEntitySet="DDH">
-                <ScalarProperty Name="SDT" ColumnName="SDT" />
-                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
-                <ScalarProperty Name="NgayDH" ColumnName="NgayDH" />
-                <ScalarProperty Name="DiaChiNhan" ColumnName="DiaChiNhan" />
-                <ScalarProperty Name="TenNguoiNhan" ColumnName="TenNguoiNhan" />
-                <ScalarProperty Name="MaKH" ColumnName="MaKH" />
-                <ScalarProperty Name="MaDDH" ColumnName="MaDDH" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

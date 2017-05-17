@@ -33,6 +33,8 @@ namespace ShoppingMobile.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
+            var listDienThoai = db.DDHCTs.Where(x => x.MaDDH == id).Include(X => X.DienThoai).ToList();
+            ViewBag.DDHCT = listDienThoai;
             return View(dDH);
         }
 

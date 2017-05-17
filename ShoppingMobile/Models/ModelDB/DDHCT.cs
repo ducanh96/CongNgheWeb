@@ -19,7 +19,7 @@ namespace ShoppingMobile.Models.ModelDB
         public Nullable<int> SoLuong { get; set; }
         public Nullable<decimal> DonGia { get; set; }
     
-        public virtual DienThoai DienThoai { get; set; }
         public virtual DDH DDH { get; set; }
+        public virtual DienThoai DienThoai { get; set; }
     }
 }

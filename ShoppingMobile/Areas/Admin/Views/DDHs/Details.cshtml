@@ -1,65 +1,103 @@
 ﻿@model ShoppingMobile.Models.ModelDB.DDH
-
+@using ShoppingMobile.Models.ModelDB
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    List<DDHCT> list = ViewBag.DDHCT;
+    decimal? totalPrice = 0;
 }
-
-<h2>Details</h2>
+<h2>Chi tiết đơn đặt hàng</h2>
 
 <div>
-    <h4>DDH</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.TenNguoiNhan)
-        </dt>
+   
+   <h3>Thông tin khách hàng</h3>
+       
+        <dl class="dl-horizontal" style="border:2px solid black">
+            <dt>
+                @Html.DisplayNameFor(model => model.TenNguoiNhan)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.TenNguoiNhan)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.TenNguoiNhan)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DiaChiNhan)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.DiaChiNhan)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.DiaChiNhan)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.DiaChiNhan)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.NgayDH)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.NgayDH)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.NgayDH)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.NgayDH)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TrangThai)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.TrangThai)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.TrangThai)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.TrangThai)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.SDT)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.SDT)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.SDT)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.SDT)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.KhachHang.TenKH)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.KhachHang.TenKH)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.KhachHang.TenKH)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.KhachHang.TenKH)
+            </dd>
 
-    </dl>
+        </dl>
+  
+</div>
+<h3>Danh sách hàng được đặt</h3>
+<div>
+    <table class="table table-bordered">
+        <thead>
+           <tr>
+               <th>Mã điện thoại</th>
+               <th>Tên điện thoại</th>
+               <th>Số lương</th>
+               <th>Đơn giá(VNĐ)</th>
+               <th>Tổng</th>
+           </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in list)
+            {
+                var tongtien = item.SoLuong * item.DonGia;
+                totalPrice += tongtien;
+                <tr>
+                    <td>@item.MaDT</td>
+                    <td>@item.DienThoai.TenDienThoai</td>
+                    <td>@item.SoLuong</td>
+                    <td>@string.Format("{0:0,0}", item.DonGia)</td>
+                    <td>@string.Format("{0:0,0}",tongtien)</td>
+                </tr>
+            }
+            <tr>
+                <td colspan="4" class="text-right">
+                    <span>Tổng tiền:</span>
+                </td>
+                <td>@string.Format("{0:0,0}", totalPrice)</td>
+            </tr>
+        </tbody>
+
+    </table>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.MaDDH }) |

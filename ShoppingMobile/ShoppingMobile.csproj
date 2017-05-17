@@ -225,7 +225,6 @@
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ShoppingController.cs" />
-    <Compile Include="Areas\Admin\Controllers\UserProfilesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -270,9 +269,6 @@
       <DependentUpon>DienThoaiModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ModelDB\Table_User.cs">
-      <DependentUpon>DienThoaiModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ModelDB\UserProfile.cs">
       <DependentUpon>DienThoaiModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ModelDB\UserRole.cs">
