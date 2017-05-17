@@ -99,7 +99,7 @@
           <Property Name="RoleId" Type="int" Nullable="false" />
           <Property Name="IsActive" Type="bit" />
         </EntityType>
-        <Association Name="FK__DDH__MaKH__2D27B809">
+        <Association Name="FK__DDH__MaKH__3D2915A8">
           <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="0..1" />
           <End Role="DDH" Type="Self.DDH" Multiplicity="*" />
           <ReferentialConstraint>
@@ -111,7 +111,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DDHCT__MaDDH__2E1BDC42">
+        <Association Name="FK__DDHCT__MaDDH__3E1D39E1">
           <End Role="DDH" Type="Self.DDH" Multiplicity="1" />
           <End Role="DDHCT" Type="Self.DDHCT" Multiplicity="*" />
           <ReferentialConstraint>
@@ -123,7 +123,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DDHCT__MaDT__2F10007B">
+        <Association Name="FK__DDHCT__MaDT__5AEE82B9">
           <End Role="DienThoai" Type="Self.DienThoai" Multiplicity="1" />
           <End Role="DDHCT" Type="Self.DDHCT" Multiplicity="*" />
           <ReferentialConstraint>
@@ -135,7 +135,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DienThoai__MaHDT__300424B4">
+        <Association Name="FK__DienThoai__MaHDT__46E78A0C">
           <End Role="HangSanXuat" Type="Self.HangSanXuat" Multiplicity="0..1" />
           <End Role="DienThoai" Type="Self.DienThoai" Multiplicity="*" />
           <ReferentialConstraint>
@@ -147,7 +147,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Images__MaDT__30F848ED">
+        <Association Name="FK__Images__MaDT__49C3F6B7">
           <End Role="DienThoai" Type="Self.DienThoai" Multiplicity="1" />
           <End Role="Images" Type="Self.Images" Multiplicity="0..1" />
           <ReferentialConstraint>
@@ -159,7 +159,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__UserRole__RoleId__31EC6D26">
+        <Association Name="FK__UserRole__RoleId__06CD04F7">
           <End Role="Table_Role" Type="Self.Table_Role" Multiplicity="1" />
           <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
           <ReferentialConstraint>
@@ -171,7 +171,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__UserRole__UserId__32E0915F">
+        <Association Name="FK__UserRole__UserId__05D8E0BE">
           <End Role="Table_User" Type="Self.Table_User" Multiplicity="1" />
           <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
           <ReferentialConstraint>
@@ -193,31 +193,31 @@
           <EntitySet Name="Table_Role" EntityType="Self.Table_Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Table_User" EntityType="Self.Table_User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__DDH__MaKH__2D27B809" Association="Self.FK__DDH__MaKH__2D27B809">
+          <AssociationSet Name="FK__DDH__MaKH__3D2915A8" Association="Self.FK__DDH__MaKH__3D2915A8">
             <End Role="KhachHang" EntitySet="KhachHang" />
             <End Role="DDH" EntitySet="DDH" />
           </AssociationSet>
-          <AssociationSet Name="FK__DDHCT__MaDDH__2E1BDC42" Association="Self.FK__DDHCT__MaDDH__2E1BDC42">
+          <AssociationSet Name="FK__DDHCT__MaDDH__3E1D39E1" Association="Self.FK__DDHCT__MaDDH__3E1D39E1">
             <End Role="DDH" EntitySet="DDH" />
             <End Role="DDHCT" EntitySet="DDHCT" />
           </AssociationSet>
-          <AssociationSet Name="FK__DDHCT__MaDT__2F10007B" Association="Self.FK__DDHCT__MaDT__2F10007B">
+          <AssociationSet Name="FK__DDHCT__MaDT__5AEE82B9" Association="Self.FK__DDHCT__MaDT__5AEE82B9">
             <End Role="DienThoai" EntitySet="DienThoai" />
             <End Role="DDHCT" EntitySet="DDHCT" />
           </AssociationSet>
-          <AssociationSet Name="FK__DienThoai__MaHDT__300424B4" Association="Self.FK__DienThoai__MaHDT__300424B4">
+          <AssociationSet Name="FK__DienThoai__MaHDT__46E78A0C" Association="Self.FK__DienThoai__MaHDT__46E78A0C">
             <End Role="HangSanXuat" EntitySet="HangSanXuat" />
             <End Role="DienThoai" EntitySet="DienThoai" />
           </AssociationSet>
-          <AssociationSet Name="FK__Images__MaDT__30F848ED" Association="Self.FK__Images__MaDT__30F848ED">
+          <AssociationSet Name="FK__Images__MaDT__49C3F6B7" Association="Self.FK__Images__MaDT__49C3F6B7">
             <End Role="DienThoai" EntitySet="DienThoai" />
             <End Role="Images" EntitySet="Images" />
           </AssociationSet>
-          <AssociationSet Name="FK__UserRole__RoleId__31EC6D26" Association="Self.FK__UserRole__RoleId__31EC6D26">
+          <AssociationSet Name="FK__UserRole__RoleId__06CD04F7" Association="Self.FK__UserRole__RoleId__06CD04F7">
             <End Role="Table_Role" EntitySet="Table_Role" />
             <End Role="UserRole" EntitySet="UserRole" />
           </AssociationSet>
-          <AssociationSet Name="FK__UserRole__UserId__32E0915F" Association="Self.FK__UserRole__UserId__32E0915F">
+          <AssociationSet Name="FK__UserRole__UserId__05D8E0BE" Association="Self.FK__UserRole__UserId__05D8E0BE">
             <End Role="Table_User" EntitySet="Table_User" />
             <End Role="UserRole" EntitySet="UserRole" />
           </AssociationSet>

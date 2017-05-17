@@ -1,10 +1,10 @@
 ﻿@using ShoppingMobile.Models.Bean;
-@model IEnumerable<ShoppingMobile.Models.Bean.ItemCart>
+@model ShoppingMobile.Models.Bean.ShoppingCart
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_ShopPage.cshtml";
 }
-
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <div class="single-product-area">
     <div class="zigzag-bottom"></div>
     <div class="container">
@@ -18,7 +18,7 @@
                         url: '@Url.Action("UpdateQuantity")',
                         data: { "proID": proID, "quantity": quantity }
                     });
-                    window.location = '/GioHang';
+                    window.location = '/GioHang/Index';
                 });
             });
         </script>
@@ -34,7 +34,7 @@
                 @{
                     decimal? total = 0;
                 }
-                @foreach (var item in Model)
+                @foreach (var item in Model.ListItem)
                 {
                     total += item.TongTien;
                     <tr>

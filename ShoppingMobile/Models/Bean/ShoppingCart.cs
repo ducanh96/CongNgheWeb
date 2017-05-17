@@ -60,7 +60,7 @@ namespace ShoppingMobile.Models.Bean
             if (existsItem != null)
             {
                 existsItem.SoLuong = intQuantity;
-                existsItem.Gia = existsItem.SoLuong * existsItem.SoLuong;
+                existsItem.TongTien = existsItem.SoLuong * existsItem.Gia ;
             }
             return true;
         }
