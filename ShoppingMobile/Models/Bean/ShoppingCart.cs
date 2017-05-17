@@ -61,8 +61,10 @@ namespace ShoppingMobile.Models.Bean
             {
                 existsItem.SoLuong = intQuantity;
                 existsItem.TongTien = existsItem.SoLuong * existsItem.Gia ;
+                return true;
             }
-            return true;
+            return false;
+           
         }
         public bool RemoveFromCart(int lngProductSellID)
         {

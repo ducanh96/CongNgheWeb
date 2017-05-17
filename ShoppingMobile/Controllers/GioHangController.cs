@@ -60,7 +60,7 @@ namespace WebProject.Controllers
                 objCart.UpdateQuantity(proID, quantity);
                 Session["Cart"] = objCart;
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Index");           
         }
 
         // xóa sản phẩm có id trong giỏ hàng đã có sẵn
