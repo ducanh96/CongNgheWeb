@@ -5,7 +5,23 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="f73890b2ed874cb190f55e8200ba1f19" Name="Diagram1">
-        </Diagram>
+        <EntityTypeShape EntityType="DienThoaiDBModel.DDH" Width="1.5" PointX="3" PointY="7.125" />
+        <EntityTypeShape EntityType="DienThoaiDBModel.DDHCT" Width="1.5" PointX="5.25" PointY="2.375" />
+        <EntityTypeShape EntityType="DienThoaiDBModel.DienThoai" Width="1.5" PointX="3" PointY="1.5" />
+        <EntityTypeShape EntityType="DienThoaiDBModel.HangSanXuat" Width="1.5" PointX="0.75" PointY="2.75" />
+        <EntityTypeShape EntityType="DienThoaiDBModel.Image" Width="1.5" PointX="5.25" PointY="5.5" />
+        <EntityTypeShape EntityType="DienThoaiDBModel.KhachHang" Width="1.5" PointX="0.75" PointY="7.25" />
+        <EntityTypeShape EntityType="DienThoaiDBModel.Table_Role" Width="1.5" PointX="7.75" PointY="4" />
+        <EntityTypeShape EntityType="DienThoaiDBModel.Table_User" Width="1.5" PointX="7.75" PointY="0.875" />
+        <EntityTypeShape EntityType="DienThoaiDBModel.UserRole" Width="1.5" PointX="10" PointY="0.875" />
+        <AssociationConnector Association="DienThoaiDBModel.FK__DDH__MaKH__2D27B809" />
+        <AssociationConnector Association="DienThoaiDBModel.FK__DDHCT__MaDDH__2E1BDC42" />
+        <AssociationConnector Association="DienThoaiDBModel.FK__DDHCT__MaDT__2F10007B" />
+        <AssociationConnector Association="DienThoaiDBModel.FK__DienThoai__MaHDT__300424B4" />
+        <AssociationConnector Association="DienThoaiDBModel.FK__Images__MaDT__30F848ED" />
+        <AssociationConnector Association="DienThoaiDBModel.FK__UserRole__RoleId__31EC6D26" />
+        <AssociationConnector Association="DienThoaiDBModel.FK__UserRole__UserId__32E0915F" />
+      </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

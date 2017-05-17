@@ -3,28 +3,41 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using ShoppingMobile.Models.ModelDB;
 namespace ShoppingMobile.Controllers
 {
     public class HomeController : Controller
     {
+        DienThoaiDBEntities db = new DienThoaiDBEntities();
         public ActionResult Index()
         {
-            return View();
+            return View(db.DienThoais.ToList());
         }
 
-        public ActionResult About()
+        public ActionResult Login()
         {
-            ViewBag.Message = "Your application description page.";
-
+            if (Session["TaiKhoan"] != null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
         }
 
-        public ActionResult Contact()
+        [HttpPost]
+        public ActionResult Login(string Email, string Password)
         {
-            ViewBag.Message = "Your contact page.";
-
+            var khachhang = db.KhachHangs.Where(c => c.Email == Email).SingleOrDefault();
+            if (khachhang != null)
+            {
+                if (khachhang.Password == Password)
+                {
+                    //dang nhap thanh cong
+                    Session["TaiKhoan"] = khachhang.MaKH;
+                    return RedirectToAction("ThanhToan", "GioHang");
+                }
+            }
             return View();
         }
+
     }
 }

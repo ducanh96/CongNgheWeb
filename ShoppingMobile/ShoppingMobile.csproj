@@ -220,20 +220,31 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\DienThoaisController.cs" />
     <Compile Include="Areas\Admin\Controllers\HangSanXuatsController.cs" />
+    <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\KhachHangsController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Models\ShoppingCart.cs" />
     <Compile Include="Controllers\ShoppingController.cs" />
-    <Compile Include="Areas\Admin\Controllers\UserProfilesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Bean\ItemCart.cs" />
+    <Compile Include="Models\Bean\ShoppingCart.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Manager\ManagerEntities.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ModelDB\DDH.cs">
+      <DependentUpon>DienThoaiModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelDB\DDHCT.cs">
+      <DependentUpon>DienThoaiModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelDB\DienThoai.cs">
+      <DependentUpon>DienThoaiModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ModelDB\DienThoaiModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -248,6 +259,24 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DienThoaiModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelDB\HangSanXuat.cs">
+      <DependentUpon>DienThoaiModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelDB\Image.cs">
+      <DependentUpon>DienThoaiModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelDB\KhachHang.cs">
+      <DependentUpon>DienThoaiModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelDB\Table_Role.cs">
+      <DependentUpon>DienThoaiModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelDB\Table_User.cs">
+      <DependentUpon>DienThoaiModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelDB\UserRole.cs">
+      <DependentUpon>DienThoaiModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -857,6 +886,8 @@
     <Content Include="Areas\Admin\Views\UserProfiles\Details.cshtml" />
     <Content Include="Areas\Admin\Views\UserProfiles\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\UserProfiles\Index.cshtml" />
+    <Content Include="Views\GioHang\Index.cshtml" />
+    <Content Include="Views\GioHang\ThanhToan.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -893,7 +924,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>60788</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:60788/</IISUrl>
+          <IISUrl>http://localhost:8080/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -9,12 +9,12 @@ namespace ShoppingMobile.Models.Bean
     {
         public int MaDT { get; set; }
         public string TenDienThoai { get; set; }
-        public int SoLuong { get; set; }
-        public double Gia { get; set; }
+        public Nullable<decimal> Gia { get; set; }
+        public Nullable<int> SoLuong { get; set; }
+
         public string AnhDT { get; set; }
-        public double GetTotal()
-        {
-            return SoLuong * Gia;
-        }
+
+        public decimal? TongTien { get; set; }
+        
     }
 }

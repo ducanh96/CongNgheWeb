@@ -25,5 +25,14 @@ namespace ShoppingMobile.Models.ModelDB
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<DDH> DDHs { get; set; }
+        public virtual DbSet<DDHCT> DDHCTs { get; set; }
+        public virtual DbSet<DienThoai> DienThoais { get; set; }
+        public virtual DbSet<HangSanXuat> HangSanXuats { get; set; }
+        public virtual DbSet<Image> Images { get; set; }
+        public virtual DbSet<KhachHang> KhachHangs { get; set; }
+        public virtual DbSet<Table_Role> Table_Role { get; set; }
+        public virtual DbSet<Table_User> Table_User { get; set; }
+        public virtual DbSet<UserRole> UserRoles { get; set; }
     }
 }

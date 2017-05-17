@@ -1,0 +1,90 @@
+﻿@using ShoppingMobile.Models.Bean;
+@model IEnumerable<ShoppingMobile.Models.Bean.ItemCart>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_ShopPage.cshtml";
+}
+
+<div class="single-product-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $(".Quantity").change(function () {
+                    var quantity = $(this).val();
+                    var proID = $(this).attr("name");
+                    //alert("Id: " +proID+". Quantity: " + quantity);
+                    $.ajax({
+                        url: '@Url.Action("UpdateQuantity")',
+                        data: { "proID": proID, "quantity": quantity }
+                    });
+                    window.location = '/GioHang';
+                });
+            });
+        </script>
+        @if (Model != null )
+        {
+            <table class="table table-striped table-bordered table-hover dataTable no-footer" role="grid">
+                <tr>
+                    <th>Tên sản phẩm</th>
+                    <th>Giá</th>
+                    <th>Số lượng</th>
+                    <th>Thành tiền</th>
+                </tr>
+                @{
+                    decimal? total = 0;
+                }
+                @foreach (var item in Model)
+                {
+                    total += item.TongTien;
+                    <tr>
+                        <td>@item.TenDienThoai (@Html.ActionLink("Xóa", "XoaSanPham", new { id = item.MaDT }))</td>
+                        <td>@item.Gia VND/ 1SP</td>
+                        <td>
+                            @Html.DropDownList("" + item.MaDT.ToString(), new SelectList(
+                         new List<Object> {
+
+                         new { value="0", text = "0"},
+                         new { value="1", text = "1"},
+                         new { value="2", text = "2"},
+                         new { value="3", text = "3"},
+                         new { value="4", text = "4"},
+                         new { value="5", text = "5"},
+                         new { value="6", text = "6"},
+                         new { value="7", text = "7"},
+                         new { value="8", text = "8"},
+                         new { value="9", text = "9"},
+ }, "value", "text", item.SoLuong), new { @class = "Quantity" })
+                        </td>
+                        <td>@item.TongTien.Value.ToString("#,##0") VND</td>
+                    </tr>
+                }
+                <tr>
+                    <td colspan="3"><b>Tổng tiền</b></td>
+                    <td><b>@total.Value.ToString("#,##0") VND</b></td>
+                </tr>
+            </table>
+            <div class="span6" style="text-align:right">
+                <a href='@Url.Action("ThanhToan","GioHang")' class="btn btn-success">Thanh Toán</a>
+            </div>
+                    }
+                    else
+                    {
+                        <div>@TempData["msg"]</div>
+                        <table class="table table-striped table-bordered table-hover dataTable no-footer" role="grid">
+                            <tr>
+                                <th>Tên sản phẩm</th>
+                                <th>Giá</th>
+                                <th>Số lượng</th>
+                                <th>Thành tiền</th>
+                            </tr>
+                            <tr>
+                                <td colspan="4"> Hiện chưa có sản phẩm nào trong giỏ hàng</td>
+                            </tr>
+                        </table>
+                    }
+        <hr />
+
+
+    </div>
+</div>
